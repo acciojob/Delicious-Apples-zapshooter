@@ -14,6 +14,11 @@
       align-items: center;
       min-height: 100vh;
     }
+    .product {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
     .container {
       margin: 2rem;
       background: #fff;
@@ -46,7 +51,6 @@
       padding: 1rem;
       box-shadow: 0 4px 12px #00000020;
       text-align: center;
-      transition: background 0.2s;
       min-height: 180px;
     }
     .photo-main img {
@@ -116,24 +120,40 @@
       margin-right: 1rem;
       color: #222;
     }
-    .variant .color-option {
-      border: 2px solid transparent;
-      border-radius: 50%;
-      margin-right: 0.75rem;
-      cursor: pointer;
-      display: inline-block;
-      width: 32px;
-      height: 32px;
-      background-size: cover;
+    .variant ul {
+      display: inline-flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
       vertical-align: middle;
-      transition: border 0.2s;
-      outline: none;
+      gap: 0.6rem;
     }
-    .variant .color-option.selected, .variant .color-option:hover {
+    .variant ul li {
+      display: flex;
+      align-items: center;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      transition: border 0.2s;
+      cursor: pointer;
+      padding: 2px;
+      background: #fafafa;
+    }
+    .variant ul li.selected,
+    .variant ul li:hover {
       border: 2px solid #2baa45;
     }
+    .variant ul li img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: #fff;
+    }
+    .variant ul li img.selected {
+      outline: 2px solid #2baa45;
+    }
     .description {
-      margin-top: 0.5rem;
       color: #333;
       font-size: 1.05rem;
     }
@@ -195,56 +215,57 @@
 </head>
 <body>
 
-<div class="container">
-
-  <section class="product__photo">
-    <div class="photo-container">
-      <div class="photo-main" id="main-photo">
-        <!-- Main Image will be set by JS -->
-        <img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="Green Apple">
+<div class="product">
+  <div class="container">
+    <section class="product__photo">
+      <div class="photo-container">
+        <div class="photo-main" id="main-photo">
+          <img 
+            src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="Green Apple">
+        </div>
       </div>
-    </div>
-    <div class="photo-album">
-      <ul id="album-list">
-        <li class="selected"><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="Green Apple view 1"></li>
-        <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="Green Apple view 2"></li>
-        <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302752/codepen/delicious-apples/yellow-apple.png" alt="Yellow Apple"></li>
-        <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302427/codepen/delicious-apples/orange-apple.png" alt="Orange Apple"></li>
-        <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302285/codepen/delicious-apples/red-apple.png" alt="Red Apple"></li>
-      </ul>
-    </div>
-  </section>
+      <div class="photo-album">
+        <ul id="album-list">
+          <li class="selected"><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="Green Apple view 1"></li>
+          <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="Green Apple view 2"></li>
+          <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302752/codepen/delicious-apples/yellow-apple.png" alt="Yellow Apple"></li>
+          <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302427/codepen/delicious-apples/orange-apple.png" alt="Orange Apple"></li>
+          <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302285/codepen/delicious-apples/red-apple.png" alt="Red Apple"></li>
+        </ul>
+      </div>
+    </section>
 
-  <section class="product__info">
-    <h1>Delicious Apples</h1>
-    <div class="price" id="price">$7.93</div>
+    <section class="product__info">
+      <h1 id="product-title">Delicious Apples</h1>
+      <div class="price" id="price">$7.93</div>
 
-    <div class="variant">
-      <span>SELECT A COLOR:</span>
-      <!-- Color image options -->
-      <div class="color-option selected" style="background-image:url('https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png')" data-index="0" title="Green"></div>
-      <div class="color-option" style="background-image:url('https://res.cloudinary.com/john-mantas/image/upload/v1537302752/codepen/delicious-apples/yellow-apple.png')" data-index="1" title="Yellow"></div>
-      <div class="color-option" style="background-image:url('https://res.cloudinary.com/john-mantas/image/upload/v1537302427/codepen/delicious-apples/orange-apple.png')" data-index="2" title="Orange"></div>
-      <div class="color-option" style="background-image:url('https://res.cloudinary.com/john-mantas/image/upload/v1537302285/codepen/delicious-apples/red-apple.png')" data-index="3" title="Red"></div>
-    </div>
+      <div class="variant">
+        <span>SELECT A COLOR:</span>
+        <ul>
+          <li class="selected"><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" data-index="0" class="selected" title="Green"></li>
+          <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302752/codepen/delicious-apples/yellow-apple.png" data-index="1" title="Yellow"></li>
+          <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302427/codepen/delicious-apples/orange-apple.png" data-index="2" title="Orange"></li>
+          <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302285/codepen/delicious-apples/red-apple.png" data-index="3" title="Red"></li>
+        </ul>
+      </div>
 
-    <div class="description">
-      <h3>BENEFITS</h3>
-      <ul>
-        <li>Apples are nutritious</li>
-        <li>Apples may be good for weight loss</li>
-        <li>Apples may be good for bone health</li>
-        <li>They're linked to a lowest risk of diabetes</li>
-      </ul>
-    </div>
-    <div class="add-to-cart">
-      <button>ADD TO CART</button>
-    </div>
-  </section>
+      <div class="description">
+        <h3>BENEFITS</h3>
+        <ul>
+          <li>Apples are nutritious</li>
+          <li>Apples may be good for weight loss</li>
+          <li>Apples may be good for bone health</li>
+          <li>They're linked to a lowest risk of diabetes</li>
+        </ul>
+      </div>
+      <div class="add-to-cart">
+        <button>ADD TO CART</button>
+      </div>
+    </section>
+  </div>
 </div>
 
 <script>
-  // Suitable for single-page demo without state management
   const varieties = [
     {
       name: 'Delicious Apples',
@@ -290,23 +311,26 @@
 
   const mainPhoto = document.querySelector('#main-photo img');
   const priceDiv = document.getElementById('price');
-  const colorOptions = document.querySelectorAll('.color-option');
-  const productTitle = document.querySelector('.product__info h1');
+  const colorImgs = document.querySelectorAll('.variant ul li img');
+  const colorLis = document.querySelectorAll('.variant ul li');
+  const productTitle = document.getElementById('product-title');
 
   // Color-picker select
-  colorOptions.forEach(opt => {
-    opt.addEventListener('click', function () {
-      colorOptions.forEach(c => c.classList.remove('selected'));
+  colorImgs.forEach((img, idx) => {
+    img.addEventListener('click', function () {
+      colorImgs.forEach(c => c.classList.remove('selected'));
+      colorLis.forEach(l => l.classList.remove('selected'));
       this.classList.add('selected');
-      const idx = parseInt(this.getAttribute('data-index'));
-      mainPhoto.src = varieties[idx].main;
-      mainPhoto.alt = varieties[idx].color + " Apple";
-      productTitle.textContent = varieties[idx].name;
-      priceDiv.textContent = varieties[idx].price;
+      colorLis[idx].classList.add('selected');
+      const variety = varieties[idx];
+      mainPhoto.src = variety.main;
+      mainPhoto.alt = variety.color + " Apple";
+      productTitle.textContent = variety.name;
+      priceDiv.textContent = variety.price;
     });
   });
 
-  // Switch images on clicking photo-album li
+  // Album image switching for main photo
   const albumLis = document.querySelectorAll('#album-list li');
   albumLis.forEach(li => {
     li.addEventListener('click', function() {
@@ -315,7 +339,7 @@
       mainPhoto.src = this.querySelector('img').src;
     });
   });
-</script>
 
+</script>
 </body>
 </html>
